@@ -59,9 +59,9 @@ process.on("uncaughtException", console.error);
     );
     const NCG_MINTER: string = Configuration.get("NCG_MINTER");
     const KMS_PROVIDER_URL: string = Configuration.get("KMS_PROVIDER_URL");
-    const KMS_PROVIDER_SUB_URL: string = Configuration.get(
-        "KMS_PROVIDER_SUB_URL"
-    );
+    // const KMS_PROVIDER_SUB_URL: string = Configuration.get(
+    //     "KMS_PROVIDER_SUB_URL"
+    // );
     const KMS_PROVIDER_KEY_ID: string = Configuration.get(
         "KMS_PROVIDER_KEY_ID"
     );
@@ -370,18 +370,20 @@ process.on("uncaughtException", console.error);
         gasPriceLimitPolicy,
     ]);
 
-    const providerMain = new ethers.providers.JsonRpcProvider(KMS_PROVIDER_URL);
-    const providerSub = new ethers.providers.JsonRpcProvider(
-        KMS_PROVIDER_SUB_URL
-    );
+    const provider = new ethers.providers.JsonRpcProvider(KMS_PROVIDER_URL);
 
-    const provider = new ethers.providers.FallbackProvider(
-        [
-            { provider: providerMain, priority: 1, weight: 2 },
-            { provider: providerSub, priority: 2, weight: 1 },
-        ],
-        1
-    );
+    // const providerMain = new ethers.providers.JsonRpcProvider(KMS_PROVIDER_URL);
+    // const providerSub = new ethers.providers.JsonRpcProvider(
+    //     KMS_PROVIDER_SUB_URL
+    // );
+
+    // const provider = new ethers.providers.FallbackProvider(
+    //     [
+    //         { provider: providerMain, priority: 1, weight: 2 },
+    //         { provider: providerSub, priority: 2, weight: 1 },
+    //     ],
+    //     1
+    // );
 
     const FEE_COLLECTOR_ADDRESS: string = Configuration.get(
         "FEE_COLLECTOR_ADDRESS"
